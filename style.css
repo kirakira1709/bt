@@ -1,0 +1,89 @@
+/* ===== General ===== */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  margin: 3px;
+  padding: 40px;
+  background: #f5f2ed;
+  color: #222;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 4.6;
+}
+
+/* ===== Layout ===== */
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ===== Headings ===== */
+
+p,
+h1,
+h2,
+h3 {
+  margin: 3px;
+  font-weight: 200;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+/* ===== Links ===== */
+
+a {
+  color: #222;
+  text-decoration: underline;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+/* ===== Images ===== */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Navigation ===== */
+
+nav {
+  margin-bottom: 40px;
+}
+
+nav a {
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+/* ===== Sections ===== */
+
+section {
+  margin-bottom: 50px;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+}

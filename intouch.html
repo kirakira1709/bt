@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>in touch</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Gowun+Batang&family=Imperial+Script&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Overpass+Mono:wght@300..700&family=Prata&family=Sedgwick+Ave+Display&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+            --font-title: "Overpass Mono", monospace;
+            --font-display: "Overpass Mono", monospace;
+            --font-body: "Spectral", serif; font-weight: 200; font-size: 18px;
+
+        }
+   
+       /* Base setup */
+* { box-sizing: border-box; margin: 3px; padding: 0; }
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  cursor: url('cursor/chi1.png') 0 0, auto;
+}
+html.light {
+    }
+
+    html.dark  {
+     filter: invert(1.5) hue-rotate(100deg) brightness(0.9) contrast(0.9) sepia(0.3);
+     background: #ffffff;
+     color: #000;
+    }
+    html.dark img,
+    html.dark iframe {
+  filter: invert(1) hue-rotate(180deg); /* reverses the parent inversion */
+
+}
+/* Header + Footer fixed height, main grows */
+header, footer {
+  background: var(--color-bg);
+  padding: 10px 20px;
+  color: var(--color-accent);
+  flex: (1 1 100%);
+}
+header { text-align: left; padding: 10px 0px 0px 50px;}
+footer {text-align: right;padding: 0px 50px 10px 0px;}
+
+/* Main fills remaining space */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;   /* horizontal centering */
+  align-items: center;       /* vertical centering */
+  padding: 2vw;
+  overflow-y: hidden;
+}
+
+/* Scale the main inner area to 80% of viewport */
+.main-content {
+  width: 80vw;
+  height: 85vh;
+  display: grid;
+  gap: 0vw;
+  overflow-y: hidden;
+}
+@media (max-width: 768px) {
+  .main-content {
+    overflow-y: auto;
+    height: 80vh;
+  }
+}
+
+
+section img {
+  max-width: 35vh;
+  height: auto;
+  padding: 50px;
+  margin: 50px;
+  padding-right: 0;
+  margin-right: 0;
+
+}
+
+
+
+
+
+
+
+nav {  
+    color: #ffffff;
+	border-top: 0px #8B2635 solid;
+	margin: 0px;
+	text-decoration: none;
+    align-items: flex-start;
+    font-family: var(--font-body);
+    z-index:999;}
+ 
+	
+	::-webkit-scrollbar {
+  display: none;
+}
+/* make sure body holds the pseudo-element but not affect others */
+body {
+  position: relative;
+  z-index: 0;         /* base layer */
+}
+
+/* fixed background layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0; /* replaces top/right/bottom/left = 0; covers full viewport */
+ background-image: url("images/100_7095.JPG");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+  pointer-events: none;
+  transform: translateZ(0); /* forces proper compositing in Safari */
+  z-index: -1;}
+
+
+a { 
+	font-family: var(--font-body);
+  padding: 2px 4px;
+  font-size: inherit;
+	display:inline-block;
+	margin:10px;
+    color: #ffffff;
+ text-decoration: none;
+}
+a:hover{
+    color: #000000;
+	transform:rotate(-15deg);
+		}
+	
+body ::selection {background-color: #c0fd70;}
+
+
+		
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;  /* iOS Safari doesn’t support fixed properly */
+    background-position: center;
+  }
+} 
+  
+  
+
+  
+
+	section {
+  
+	flex: 1;
+	margin: 5px;
+	overflow-x: hidden;
+  overflow-y: scroll;      /* each section scrolls independently */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: end;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory; /* snap to each image */
+  padding: 1px;
+}
+
+
+img {
+
+  cursor: zoom-in;
+  cursor: url('cursor/chi1.png') 0 0, auto;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+
+
+}
+
+.zoom-overlay {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,0.6);
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 1000;
+
+}
+
+.zoom-overlay img {
+
+  max-width: 90vw;
+
+  max-height: 90vh;
+
+  cursor: zoom-out;
+
+}
+
+    .full { flex: 1 1 100%;}
+    .half { flex: 1 1 calc(50% - 2em); }
+    .third { flex: 1 1 calc(33% - 2em);}
+    .twothird { flex: 1 1 calc(66% - 2em); }
+    .quarter { flex: 1 1 calc(25% - 2em); }
+    .threequarter { flex: 1 1 calc(75% - 2em); }
+    .up { position: fixed; z-index: 99999;
+	bottom: 10px; right: 10px;
+    }
+    
+    .up a {
+	color: #8B2635;
+	display: block;
+	border: 1px #8B2635 solid;
+	margin: 0px;
+	padding: 20px 50px 0px 5px;
+	text-decoration: none;
+        background-color: #eeeeee;
+    font-family: var(--font-body);
+    }
+
+
+/* ✅ Responsive tweak for smaller screens */
+@media screen and (max-width: 700px) {
+  .iframe-container {
+    padding-top: 75%; /* 4:3 aspect ratio */
+
+  }
+  body, html {
+    overflow-x: hidden; /* 🚫 Prevent horizontal scroll */
+  }
+  body::before {
+  content: "";
+  position: fixed;
+  inset: 0; /* replaces top/right/bottom/left = 0; covers full viewport */
+ background-image: url("images/100_7095.JPG");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+  pointer-events: none;
+  transform: translateZ(0); /* forces proper compositing in Safari */
+  z-index: -1;}
+}
+
+
+/* ✅ Optional: make extra-tiny screens (like 400px) use 1:1 */
+@media screen and (max-width: 400px) {
+  .iframe-container {
+    padding-top: 100%; /* 1:1 square */
+
+  }
+  body, html {
+    overflow-x: hidden; /* 🚫 Prevent horizontal scroll */
+  }
+
+}
+
+  
+ </style>
+  </head>
+
+<body>
+  
+    
+<!-- navbar1 - first 3 galleries -->
+
+    
+<main>
+    <div class="main-content">
+
+	<section class="full">
+<img src="images/100_7085.JPG">
+<img src="images/100_7273.JPG">
+<p>I feel a lot, therefore tiny things cut me deeply.</p>
+<p>It’s like that minuscule fragment of broken glass stuck between your thumbprint,</p>
+<p>that we spent a nonsensical amount of time searching for,</p>
+<p> only to fail utterly.</p>
+<p>That’s the glimmer of the devilish thing.</p>
+<p>It decided to nest under my skin,</p>
+<p> stay rent-free for the rest of my eternity,</p>
+<p>and never let my consciousness sleep.</p>
+<p>Not a night.</p><br>
+<p>As if pure joy could compensate for a childish prank.</p>
+<img src="images/100_6509.JPG">
+<img src="images/100_6553.JPG">
+<br>
+<br>
+<br>
+</section>	
+
+
+</div>
+
+
+
+
+</main>
+
+
+<div class="draggable" style="display: none;" id="phat"><img alt="drag me" src="/bg/pin-phat.gif"></div>
+  
+  <div class="draggable" style="display: none;" id="medal"><img alt="drag me" src="/bg/pin-medal.gif"></div>
+
+  
+
+
+ <!-- draggable items for decoration -->
+ 
+  
+	  
+<!-- ✅ Load Draggabilly first -->
+<script src="https://unpkg.com/draggabilly@3/dist/draggabilly.pkgd.min.js"></script>
+
+<script>
+// === Draggable Setup ===
+window.addEventListener("DOMContentLoaded", () => {
+  // Select all draggable elements
+  const draggables = document.querySelectorAll(".draggable");
+
+  draggables.forEach(el => {
+    const draggie = new Draggabilly(el, {
+      containment: "body" // keeps them inside the viewport
+    });
+
+    // Optional: make dragged item come to front while dragging
+    draggie.on("dragStart", () => el.style.zIndex = 10000);
+    draggie.on("dragEnd", () => el.style.zIndex = 9999);
+  });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll("nav a");
+  const sections = document.querySelectorAll("section");
+  const showAllBtn = document.getElementById("showAll");
+
+  links.forEach(link => {
+    link.addEventListener("click", e => {
+      const href = link.getAttribute("href");
+
+      // If it's an in-page anchor (starts with '#'), handle it here.
+      if (href && href.startsWith("#")) {
+        e.preventDefault();
+
+        // Hide all sections
+        sections.forEach(sec => (sec.style.display = "none"));
+
+        const targetId = href.slice(1);
+        const target = document.getElementById(targetId);
+        if (!target) 
+          // no matching section found — nothing to show
+          return;
+        
+      
+        // show the target
+        target.style.display = "flex";
+    }
+     });
+  });
+
+         // ✅ Handle "Show All" button
+  if (showAllBtn) {
+    showAllBtn.addEventListener("click", e => {
+      e.preventDefault(); // stops the page from jumping
+      sections.forEach(sec => (sec.style.display = "flex"));
+    });
+  }
+});
+
+</script>
+
+	<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const overlay = document.createElement("div");
+
+  overlay.className = "zoom-overlay";
+
+  overlay.addEventListener("click", () => overlay.style.display = "none");
+
+  document.body.appendChild(overlay);
+
+
+
+  document.querySelectorAll("img").forEach(img => {
+
+    img.addEventListener("click", () => {
+
+      const clone = img.cloneNode();
+
+      overlay.innerHTML = "";
+
+      overlay.appendChild(clone);
+
+      overlay.style.display = "flex";
+
+    });
+
+  });
+
+});
+
+</script>
+<script>
+    function toggleMode() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      html.classList.toggle('light');
+    }
+  </script>
+
+
+
+</body>
+</html>
+
+
+
+
+
