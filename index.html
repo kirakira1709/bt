@@ -1,453 +1,254 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>tiny pains</title>
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Gowun+Batang&family=Imperial+Script&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Overpass+Mono:wght@300..700&family=Prata&family=Sedgwick+Ave+Display&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,40  margin: 5px;
-	overflow-x: scroll;
-  overflow-y: hidden;      /* each section scrolls independently */
-  height: 1００%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: end;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory; /* snap to each image */
-  padding: 1px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-img {
+  <title>bt</title>
 
-  cursor: zoom-in;
-  cursor: url('cursor/chi1.png') <|fim_suffix|>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Gowun+Batang&family=Imperial+Script&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Overpass+Mono:wght@300..700&family=Prata&family=Sedgwick+Ave+Display&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
-<style>
+  <style>
     :root {
-            --font-title: "Overpass Mono", monospace;
-            --font-display: "Overpass Mono", monospace;
-            --font-body: "Spectral", serif; font-weight: 200; font-size: 18px;
-
-        }
-   
-       /* Base setup */
-* { box-sizing: border-box; margin: 3px; padding: 0; }
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-body);
-  background: var(--color-bg);
-  cursor: url('cursor/chi1.png') 0 0, auto;
-  overflow-y:hidden;
-}
-
-
-
-/* Main fills remaining space */
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;   /* horizontal centering */
-  align-items: center;       /* vertical centering */
-  padding: 2vw;
-  overflow-y: hidden;
-}
-
-/* Scale the main inner area to 80% of viewport */
-.main-content {
-  width: 95vw;
-  height: 85vh;
-  display: grid;
-  gap: 0vw;
-  overflow-y: hidden;
-}
-@media (max-width: 768px) {
-  .main-content {
-    overflow-y: auto;
-    height: 80vh;
-  }
-}
-p {display: flex; align-items:center; text-align:left; font-family: var(--font-body); font-size: 18px; color: #000000; margin: 10px; padding: 0px;}
-
-
-section img {
-  max-height: 100%;
-  margin: 50px;
-  padding-bottom: 0;
-  margin-bottom: 0;
-
-}
-
-
-/* make sure body holds the pseudo-element but not affect others */
-body {
-  position: relative;
-  z-index: 0;         /* base layer */
-}
-
-/* fixed background layer */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0; /* replaces top/right/bottom/left = 0; covers full viewport */
- background-image: url("images/100_7030.JPG");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-  pointer-events: none;
-  transform: translateZ(0); /* forces proper compositing in Safari */
-  z-index: -1;}
-
-
-a { 
-	font-family: var(--font-body);
-  padding: 2px 4px;
-  font-size: inherit;
-	display:inline-block;
-	margin:10px;
-    color: #ffffff;
- text-decoration: none;
-}
-a:hover{
-    color: #000000;
-	transform:rotate(-15deg);
-		}
-	
-body ::selection {background-color: #c0fd70;}
-
-
-		
-@supports (-webkit-touch-callout: none) {
-  body {
-    background-attachment: scroll;  /* iOS Safari doesn’t support fixed properly */
-    background-position: center;
-  }
-} 
-
-	section {
-	flex: 1;
-	margin: 5px;
-	overflow-x: scroll;
-  overflow-y: hidden;      /* each section scrolls independently */
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: end;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory; /* snap to each image */
-  padding: 1px;
-}
-
-img {
-
-  cursor: zoom-in;
-  cursor: url('cursor/chi1.png') 0 0, auto;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-
-
-}
-
-.zoom-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-
-}
-
- .poem {
-    display: flex;
-    flex: 0 0 200px;
-  flex-direction: column;
-  text-align: left;
-  font-family: var(--font-body);
-  font-size: 18px;
-  color: #000000;
-  margin: 10px;
-  padding: 0px;
-  gap: 5px;
-  line-height: 1.5;
-}
-
-.zoom-overlay img {
- width: auto;
-  max-width: 200%;
-  cursor: grab;
-  user-select: none;
-}
-.zoom-close {
-  position: fixed;
-  top: 20px;
-  right: 25px;
-  z-index: 1000;
-
-  border: none;
-  background: none;
-
-  font-size: 36px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-
-.zoom-overlay img:active {
-  cursor: grabbing;
-}
-    .full { flex: 1 1 100%;}
-    .half { flex: 1 1 calc(50% - 2em); }
-    .third { flex: 1 1 calc(33% - 2em);}
-    .twothird { flex: 1 1 calc(66% - 2em); }
-    .quarter { flex: 1 1 calc(25% - 2em); }
-    .threequarter { flex: 1 1 calc(75% - 2em); }
-    .up { position: fixed; z-index: 99999;
-	bottom: 10px; right: 10px;
+      --font-body: "Spectral", serif;
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 3px;
+      padding: 0;
+    }
 
-/* ✅ Responsive tweak for smaller screens */
-@media screen and (max-width: 700px) {
-  .iframe-container {
-    padding-top: 75%; /* 4:3 aspect ratio */
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: var(--font-body);
+      background: #000000;
+      cursor: url("cursor/chi1.png") 0 0, auto;
+    }
 
-  }
-  body, html {
-    overflow-x: hidden; /* 🚫 Prevent horizontal scroll */
-  }
-  body::before {
-  content: "";
-  position: fixed;
-  inset: 0; /* replaces top/right/bottom/left = 0; covers full viewport */
- background-image: url("images/100_7095.JPG");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-  pointer-events: none;
-  transform: translateZ(0); /* forces proper compositing in Safari */
-  z-index: -1;}
-}
-.thumbnail {
-  width: 20%;
-  cursor: pointer;
-}
+    /* Background */
+    body {
+      position: relative;
+    }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("images/100_7030.JPG");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-/* ✅ Optional: make extra-tiny screens (like 400px) use 1:1 */
-@media screen and (max-width: 400px) {
-  .iframe-container {
-    padding-top: 100%; /* 1:1 square */
+    body.fullscreen section { position: fixed; inset: 0; z-index: 1000; margin: 0; padding: 0; background: black; } body.fullscreen section img { width: 100vw; height: 100vh; max-height: none; margin: 0; object-fit: contain; } body.fullscreen section img:not(:first-child) { margin: 0; }
 
-  }
-  body, html {
-    overflow-x: hidden; /* 🚫 Prevent horizontal scroll */
-  }
+    /* Photo strip */
+    main {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
 
-}
+    section {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      padding: 0;
+    }
+
+    section img {
+      max-height: 100%;
+      width: auto;
+      margin: 10px;
+      margin-bottom: 0;
+      cursor: url("cursor/chi1.png") 0 0, auto;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    /* Keep intentional gaps between images */
+    .gap-large {
+      margin-right: 3200px;
+    }
+
+    .gap-small {
+      margin-right: 400px;
+    }
 
   
- </style>
-  </head>
-
-<body>
-  
-    
-<!-- navbar1 - first 3 galleries -->
-
-    
-<main>
-    <div class="main-content">
-
-	<section class="full">
-<div class="poem">
-<p>I feel a lot, therefore tiny things cut me deeply.</p></div>
-<div class="poem">
-<p>It’s like that minuscule fragment of broken glass stuck in your thumbprint,</p>
-<p>which we spent a nonsensical amount of time searching for,</p>
-<p>only to fail utterly.</p></div>
-<div class="poem">
-<p>That’s the glimmer of the devilish thing.</p>
-<p>It decided to nest under my skin,</p>
-<p>stay rent-free for the rest of my eternity,</p>
-<p>and never let my consciousness sleep.</p>
-<p>Not a night.</p>
-</div>
-<div class="poem">
-<p>As if pure joy could compensate for a childish prank.</p>
-</div>
-<img class="thumbnail" src="images/100_7378.JPG" style="margin-right: 3200px;">
-<img src="images/100_7355.JPG">
-<img src="images/100_7394.JPG">
-<img src="images/100_7333.JPG" style="margin-right: 400px;">
-<img class="thumbnail" src="images/100_7236.JPG">
-</section>	
 
 
-</div>
+    a {
+      font-family: var(--font-body);
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+      padding: 2px 4px;
+    }
 
+    a:hover {
+      color: black;
+      transform: rotate(-15deg);
+    }
 
+    ::selection {
+      background: #c0fd70;
+    }
 
-
-</main>
-
-
-
-	<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const overlay = document.createElement("div");
-  overlay.className = "zoom-overlay";
-
-  const closeButton = document.createElement("button");
-  closeButton.className = "zoom-close";
-  closeButton.innerHTML = "&times;";
-
-  overlay.appendChild(closeButton);
-  document.body.appendChild(overlay);
-
-  let image = null;
-
-  let isDragging = false;
-  let x = 0;
-  let y = 0;
-  let startX = 0;
-  let startY = 0;
-
-
-  // OPEN IMAGE
-  document.querySelectorAll("img").forEach(img => {
-
-    img.addEventListener("click", () => {
-
-      // Completely remove any previous zoomed image
-      if (image) {
-        image.remove();
-        image = null;
+    /* Mobile */
+    @media screen and (max-width: 700px) {
+      body::before {
+        background-image: url("images/100_7095.JPG");
       }
 
-      // Reset position
-      x = 0;
-      y = 0;
-
-      // Create new zoomed image
-      image = img.cloneNode(true);
-      image.className = "zoomed-image";
-
-      image.style.transform = "translate3d(0, 0, 0)";
-
-      overlay.appendChild(image);
-      overlay.style.display = "flex";
-
-      // Drag events
-      image.addEventListener("pointerdown", startDrag);
-      image.addEventListener("pointermove", drag);
-      image.addEventListener("pointerup", endDrag);
-      image.addEventListener("pointercancel", endDrag);
-    });
-
-  });
-
-
-  // START DRAG
-  function startDrag(e) {
-
-    e.preventDefault();
-
-    isDragging = true;
-
-    startX = e.clientX - x;
-    startY = e.clientY - y;
-
-    image.setPointerCapture(e.pointerId);
-
-    image.style.cursor = "grabbing";
-  }
-
-
-  // DRAG
-  function drag(e) {
-
-    if (!isDragging || !image) return;
-
-    x = e.clientX - startX;
-    y = e.clientY - startY;
-
-    image.style.transform =
-      `translate3d(${x}px, ${y}px, 0)`;
-  }
-
-
-  // END DRAG
-  function endDrag(e) {
-
-    isDragging = false;
-
-    if (image && image.hasPointerCapture(e.pointerId)) {
-      image.releasePointerCapture(e.pointerId);
+      section img {
+        margin: 0;
+      }
     }
 
-    if (image) {
-      image.style.cursor = "grab";
-    }
+body.fullscreen section {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: black;
+  margin: 0;
+  padding: 0;
+}
+
+body.fullscreen section img {
+  width: 100vw;
+  height: 100vh;
+  max-height: none;
+  margin: 0;
+  object-fit: contain;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <section>
+
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7724 copy.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7735.JPG"
+      >
+      
+    <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7927.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7735.JPG"
+        width="50vw"
+      >
+  
+      
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7867.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7753.JPG"
+      >
+       
+       <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7779.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7753.JPG"
+      >
+     
+        
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7753.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7753.JPG"
+      >
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7821.JPG"
+        class="gap-small"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7750.JPG"
+      >
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7937.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7735.JPG"
+        width="50vw"
+      >
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7825.JPG"
+        class="gap-small"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7750.JPG"
+      >
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7919.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7735.JPG"
+        width="50vw"
+      >
+    
+            
+       
+       <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7775.JPG"
+        class="gap-small"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7750.JPG"
+      >
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7832.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7735.JPG"
+        width="50vw"
+      >
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7933.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7753.JPG"
+      >
+      <img
+        src="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7882.JPG"
+        data-full="https://pub-4fded0c531f046529c3e6341426c2bc3.r2.dev/just/100_7753.JPG"
+      >
+    </section>
+  </main>
+
+
+  <!-- Fullscreen viewer -->
+  <div class="zoom-overlay" id="zoomOverlay">
+
+    <button class="zoom-close" id="zoomClose">×</button>
+
+    <img id="zoomImage" src="" alt="">
+
+  </div>
+
+<script> const images = document.querySelectorAll("section img"); let current = 0; images.forEach((img, index) => { img.addEventListener("click", () => { current = index; showFullscreen(); }); }); function showFullscreen() { document.body.classList.add("fullscreen"); images.forEach((img, index) => { img.style.display = index === current ? "block" : "none"; }); } document.addEventListener("click", (event) => { if (!document.body.classList.contains("fullscreen")) return; if (event.target.tagName !== "IMG") return; current = (current + 1) % images.length; showFullscreen(); }); document.addEventListener("keydown", (event) => { if (!document.body.classList.contains("fullscreen")) return; if (event.key === "Escape") { document.body.classList.remove("fullscreen"); images.forEach(img => { img.style.display = "block"; }); } if (event.key === "ArrowRight") { current = (current + 1) % images.length; showFullscreen(); } if (event.key === "ArrowLeft") { current = (current - 1 + images.length) % images.length; showFullscreen(); } }); </script>
+```html
+<script>
+  const password = "casagaia";
+
+  const entered = prompt("password:");
+
+  if (entered !== password) {
+    document.body.innerHTML = "";
+    document.body.style.background = "black";
   }
-
-
-  // CLOSE FUNCTION
-  function closeZoom() {
-
-    // Stop dragging
-    isDragging = false;
-
-    // Remove the actual zoomed image
-    if (image) {
-      image.remove();
-      image = null;
-    }
-
-    // Reset position
-    x = 0;
-    y = 0;
-
-    // Hide overlay
-    overlay.style.display = "none";
-  }
-
-
-  // CLOSE WITH X
-  closeButton.addEventListener("click", closeZoom);
-
-
-  // CLOSE BY CLICKING BACKGROUND
-  overlay.addEventListener("click", e => {
-
-    if (e.target === overlay) {
-      closeZoom();
-    }
-
-  });
-
-});
 </script>
-
-
-
+```
 
 
 </body>
+
+
 </html>
-
-
-
-
 
