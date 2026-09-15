@@ -277,7 +277,7 @@ body.fullscreen section img {
   </div>
 
 <script> const images = document.querySelectorAll("section img"); let current = 0; images.forEach((img, index) => { img.addEventListener("click", () => { current = index; showFullscreen(); }); }); function showFullscreen() { document.body.classList.add("fullscreen"); images.forEach((img, index) => { img.style.display = index === current ? "block" : "none"; }); } document.addEventListener("click", (event) => { if (!document.body.classList.contains("fullscreen")) return; if (event.target.tagName !== "IMG") return; current = (current + 1) % images.length; showFullscreen(); }); document.addEventListener("keydown", (event) => { if (!document.body.classList.contains("fullscreen")) return; if (event.key === "Escape") { document.body.classList.remove("fullscreen"); images.forEach(img => { img.style.display = "block"; }); } if (event.key === "ArrowRight") { current = (current + 1) % images.length; showFullscreen(); } if (event.key === "ArrowLeft") { current = (current - 1 + images.length) % images.length; showFullscreen(); } }); </script>
-```html
+
 <script>
   const password = "casagaia";
 
@@ -288,7 +288,7 @@ body.fullscreen section img {
     document.body.style.background = "black";
   }
 </script>
-```
+
 
 
 </body>
